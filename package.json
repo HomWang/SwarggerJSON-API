@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "api": "node NuxtAutoApi.js"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.9.5",
+    "nuxt": "^2.11.0"
+  }
+}
