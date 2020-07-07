@@ -1,10 +1,17 @@
 {
+  "name": "SwarggerToApi",
+  "version": "0.0.1",
+  "description": "take swargger.json Automatically convert to api.js",
+  "main": "index.js",
+  "repository": "https://github.com/nuxt/modules",
+  "homepage": "https://github.com/nuxt/modules/tree/master/packages/browserconfig",
   "scripts": {
     "swargger": "node SwarggerAutoApi.js",
     "yapi": "node YapiAutoApi.js"
   },
-  "dependencies": {
-    "@nuxtjs/axios": "^5.9.5",
-    "nuxt": "^2.11.0"
-  }
+  "bin": {
+    "SwarggerToApi": "./index.js"
+  },
+  "author": "rechard",
+  "license": "MIT",
 }
