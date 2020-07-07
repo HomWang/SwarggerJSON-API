@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "api": "node NuxtAutoApi.js"
+    "swargger": "node SwarggerAutoApi.js",
+    "yapi": "node YapiAutoApi.js"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.9.5",
