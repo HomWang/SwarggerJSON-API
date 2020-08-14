@@ -11,8 +11,7 @@
           "ApplyRecord"
         ],
         "summary": "获取个人交易记录列表",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "pageNo",
             "in": "query",
             "description": "",
@@ -119,8 +118,7 @@
         "tags": [
           "ApplyRecord"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "name": "applyRecordId",
             "in": "query",
             "schema": {
@@ -164,8 +162,7 @@
           "ApplyRecord"
         ],
         "summary": "用户提交充值申请, 平台类型",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "outUserAccount",
             "in": "query",
             "description": "付款账号（可以为空）",
@@ -302,8 +299,7 @@
           "ApplyRecord"
         ],
         "summary": "用户提交充值申请, 众币平台",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "payType",
             "in": "query",
             "description": "支付方式：1、支付宝；2、微信；",
@@ -368,8 +364,7 @@
         "tags": [
           "ApplyRecord"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "name": "payType",
             "in": "query",
             "schema": {
@@ -437,13 +432,11 @@
           "Article"
         ],
         "summary": "查讯首页资讯",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "responses": {
           "200": {
             "description": "Success",
@@ -474,8 +467,7 @@
           "BalanceRecord"
         ],
         "summary": "账变明细查询",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "startTime",
             "in": "query",
             "description": "开始时间",
@@ -551,8 +543,7 @@
           "BalanceRecord"
         ],
         "summary": "获取账变明细关联订单数据",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "changeType",
             "in": "query",
             "description": "资金变动类型",
@@ -608,8 +599,7 @@
           "BankCard"
         ],
         "summary": "绑定银行卡",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "realName",
             "in": "query",
             "description": "收款人真实姓名",
@@ -695,8 +685,7 @@
           "BankCard"
         ],
         "summary": "设置当前银行卡为默认状态",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "bankCardId",
             "in": "query",
             "description": "银行卡ID",
@@ -742,13 +731,11 @@
           "BankCard"
         ],
         "summary": "当前用户的所有银行卡",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "responses": {
           "200": {
             "description": "Success",
@@ -779,8 +766,7 @@
           "BankCard"
         ],
         "summary": "删除指定的银行卡",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "bankCardId",
             "in": "query",
             "description": "银行卡ID",
@@ -836,13 +822,11 @@
           "Common"
         ],
         "summary": "文件上传",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -878,13 +862,11 @@
           "Common"
         ],
         "summary": "获取当前系统界面配置信息：logo,轮播图，客服配置 等信息",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "responses": {
           "200": {
             "description": "Success",
@@ -915,8 +897,7 @@
           "Common"
         ],
         "summary": "获取昨日获奖信息",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "size",
             "in": "query",
             "description": "展示条数",
@@ -962,8 +943,7 @@
           "Common"
         ],
         "summary": "获取实时中奖信息",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "size",
             "in": "query",
             "description": "展示条数",
@@ -1009,13 +989,11 @@
           "FeedBack"
         ],
         "summary": "反馈意见",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "responses": {
           "200": {
             "description": "Success",
@@ -1046,13 +1024,11 @@
           "FeedBack"
         ],
         "summary": "添加一条反馈意见",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "requestBody": {
           "description": "参数json格式{\"type\":意见类型（1技术问题、2意见建议、3财务问题、99其他反馈）,\"content\":反馈内容}",
           "content": {
@@ -1120,13 +1096,11 @@
           "Game"
         ],
         "summary": "会员获取游戏列表",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "responses": {
           "200": {
             "description": "Success",
@@ -1157,8 +1131,7 @@
           "Game"
         ],
         "summary": "获取游戏当前期号、开封盘时间",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "gameConfigId",
             "in": "query",
             "schema": {
@@ -1202,8 +1175,7 @@
           "Game"
         ],
         "summary": "获取游戏下注赔率",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "gameConfigId",
             "in": "query",
             "description": "游戏配置ID",
@@ -1269,8 +1241,7 @@
           "Game"
         ],
         "summary": "获取指定游戏时间段的开奖记录",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "pageNo",
             "in": "query",
             "description": "页码",
@@ -1358,8 +1329,7 @@
           "Game"
         ],
         "summary": "查询最后一期开奖信息",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "gameConfigId",
             "in": "query",
             "description": "游戏配置id",
@@ -1405,13 +1375,11 @@
           "Game"
         ],
         "summary": "游戏下注",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "requestBody": {
           "description": "下注参数",
           "content": {
@@ -1467,8 +1435,7 @@
           "Game"
         ],
         "summary": "获取游戏露珠",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "gameConfigId",
             "in": "query",
             "description": "游戏配置ID",
@@ -1514,8 +1481,7 @@
           "Game"
         ],
         "summary": "两面长龙",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "gameConfigId",
             "in": "query",
             "description": "游戏配置ID",
@@ -1561,8 +1527,7 @@
           "Game"
         ],
         "summary": "获取已结、未结订单",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "pageNo",
             "in": "query",
             "description": "页码",
@@ -1627,8 +1592,7 @@
           "Game"
         ],
         "summary": "会员前端获取开奖记录",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "pageNo",
             "in": "query",
             "description": "页码",
@@ -1705,8 +1669,7 @@
           "Game"
         ],
         "summary": "获取结果走势",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "gameConfigId",
             "in": "query",
             "description": "游戏配置ID",
@@ -1752,13 +1715,11 @@
           "Game"
         ],
         "summary": "撤销订单",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "requestBody": {
           "description": "订单id",
           "content": {
@@ -1838,8 +1799,7 @@
           "Game"
         ],
         "summary": "获取单个游戏玩法、单注最低、单注最高、单期最高信息",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "gameConfigId",
             "in": "query",
             "description": "游戏配置ID",
@@ -1885,8 +1845,7 @@
           "Game"
         ],
         "summary": "获取游戏规则信息",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "gameConfigId",
             "in": "query",
             "description": "游戏配置ID",
@@ -1932,8 +1891,7 @@
           "Game"
         ],
         "summary": "获取当前生肖排序",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "date",
             "in": "query",
             "description": "日期，不填则当前日期对应生肖",
@@ -1980,13 +1938,11 @@
           "Message"
         ],
         "summary": "当前用户未读消息",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "responses": {
           "200": {
             "description": "Success",
@@ -2016,8 +1972,7 @@
         "tags": [
           "Message"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "name": "messageId",
             "in": "query",
             "schema": {
@@ -2061,8 +2016,7 @@
           "Notice"
         ],
         "summary": "获取指定类型的所有公告",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "showType",
             "in": "query",
             "description": "展示类型：1代理后台、2会员前台、3会员登录页、4会员底部轮播公告",
@@ -2108,13 +2062,11 @@
           "Payee"
         ],
         "summary": "会员获取可用支付方式配置列表，特殊处理银行卡和众币支付时配置传空",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "responses": {
           "200": {
             "description": "Success",
@@ -2145,13 +2097,11 @@
           "User"
         ],
         "summary": "用户登录",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "requestBody": {
           "description": "json参数{account,password(MD5 编码一次),validCode}",
           "content": {
@@ -2219,13 +2169,11 @@
           "User"
         ],
         "summary": "调试登录",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "requestBody": {
           "description": "json参数格式：account-用户账号，password - 密码",
           "content": {
@@ -2293,13 +2241,11 @@
           "User"
         ],
         "summary": "退出登录",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "responses": {
           "200": {
             "description": "Success",
@@ -2330,13 +2276,11 @@
           "User"
         ],
         "summary": "会员注册【所有参数必填】",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "requestBody": {
           "description": "json参数{ account,realName,phone,email,password,invitationCode,validCode,authCode,nickname昵称,avatar头像地址}",
           "content": {
@@ -2404,13 +2348,11 @@
           "User"
         ],
         "summary": "获取当前登录用户个人信息: 邮箱，微信，QQ，电话(模糊化参数)",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "responses": {
           "200": {
             "description": "Success",
@@ -2441,13 +2383,11 @@
           "User"
         ],
         "summary": "获取当前登录用户资金账户信息(包含今日输赢，未结算金额)",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "responses": {
           "200": {
             "description": "Success",
@@ -2478,8 +2418,7 @@
           "User"
         ],
         "summary": "用户忘记密码,发送邮件验证码",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "account",
             "in": "query",
             "description": "登录账号",
@@ -2535,13 +2474,11 @@
           "User"
         ],
         "summary": "用户通过邮件验证码修改登录密码\r\n{account 登录账号,emailCode 邮箱验证码,password 密码,authCode 授权码}",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -2604,13 +2541,11 @@
           "User"
         ],
         "summary": "用户修改登录密码=> { \"oldPassword\":旧密码（使用MD5编码,\"newPassword\":新密码（使用MD5编码 }",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -2673,13 +2608,11 @@
           "User"
         ],
         "summary": "用户修改资金安全密码=> { \"oldPassword\":旧密码（使用MD5编码,\"newPassword\":新密码（使用MD5编码 }",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -2742,13 +2675,11 @@
           "User"
         ],
         "summary": "修改（邮箱，微信，QQ，电话）联系信息 {\"email\":\"邮箱账号\",\"weChat\":\"微信账号\",\"qq\":\"qq号\",\"phone\":\"电话号码\"}",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "requestBody": {
           "content": {
             "application/json-patch+json": {
@@ -2811,13 +2742,11 @@
           "User"
         ],
         "summary": "当前用户设置安全问题和答案",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "requestBody": {
           "description": "json参数格式： {\"question\":\"问题描述\",\"answers\":\"答案描述\"}",
           "content": {
@@ -2885,8 +2814,7 @@
           "User"
         ],
         "summary": "验证安全答案",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "answers",
             "in": "query",
             "description": "验证安全问题答案",
@@ -2932,8 +2860,7 @@
           "User"
         ],
         "summary": "用户绑定个人信息",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "type",
             "in": "query",
             "description": "1邮箱，2电话，3QQ，4微信，6昵称，7头像",
@@ -2988,8 +2915,7 @@
         "tags": [
           "User"
         ],
-        "parameters": [
-          {
+        "parameters": [{
             "name": "account",
             "in": "query",
             "schema": {
@@ -3033,8 +2959,7 @@
           "UserReport"
         ],
         "summary": "会员端报表查询",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "begin",
             "in": "query",
             "description": "起始时间",
@@ -3090,13 +3015,11 @@
           "ValidCode"
         ],
         "summary": "获取一个新的验证码，并发放未登录认证的token.用于校验验证码",
-        "parameters": [
-          {
-            "name": "AuthorizationToken",
-            "in": "header",
-            "description": "Token 验证信息"
-          }
-        ],
+        "parameters": [{
+          "name": "AuthorizationToken",
+          "in": "header",
+          "description": "Token 验证信息"
+        }],
         "responses": {
           "200": {
             "description": "Success",

@@ -6,7 +6,7 @@ fs.readJson('./swagger.json', async (err, packageObj) => {
   if (err) console.error(err)
   const swarggerJSON = packageObj
   const clientMethods = generateClientAPIMethods(swarggerJSON)
-  const apiClientPath = path.resolve(__dirname, path.join('api.js'))
+  const apiClientPath = path.resolve(__dirname, path.join('plugins/api/api.js'))
   await fs.writeFile(apiClientPath, clientMethods)
 })
 
@@ -43,12 +43,34 @@ function generateClientAPIMethodsBody(methods, loadedMethods = '', path = null, 
           loadedMethods += `  ${methods.paths[prop][methodName].tags[0]}: {\n`
         }
         if (methods.paths[prop][methodName].summary && funName && methodName) {
-          loadedMethods += `    // ${methods.paths[prop][methodName].summary.replace(/\n/, '    // ')}\n`
+          loadedMethods += `    /* \n`
+          // 接口名称
+          loadedMethods += `    ** 接口名称: ${methods.paths[prop][methodName].summary.replace(/\n/, '    // ')}\n`
+          // 参数结构
+          loadedMethods += `    ** 参数结构: \n`
+          if (methods.paths[prop][methodName]['parameters'].length) {
+            methods.paths[prop][methodName]['parameters'].map(item => {
+              loadedMethods += `    **    ${JSON.stringify(item)}\n`
+            })
+          }
+          // 传参
+          loadedMethods += `    ** 传参(直接复制、粘贴、去掉注释就可以直接用): \n`
+          if (methods.paths[prop][methodName]['parameters'].length) {
+            loadedMethods += `    //    let params = { \n`
+            methods.paths[prop][methodName]['parameters'].map(item => {
+              // 判断是否是头部需要的信息，是的话就不进入传参，否则就进入
+              if (item.name !== "AuthToken") {
+                loadedMethods += `    //        ${JSON.stringify(item.name)}: "",// ${JSON.stringify(item.description)}\n`
+              }
+            })
+            loadedMethods += `    //    } \n`
+          }
+          loadedMethods += `    */ \n`
         }
         loadedMethods += `    ${funName} (params) {\n`
-        loadedMethods += `      return context.$axios.${methodName}('${prop}', {\n`
+        loadedMethods += `      return client.${methodName}('${prop}', ${methodName == "get" ? '{' : ""}\n`
         loadedMethods += `        params\n`
-        loadedMethods += `      })\n`
+        loadedMethods += `      ${methodName == "get" ? '}' : ""})\n`
         loadedMethods += `    },\n`
         oldVal = methods.paths[prop][methodName].tags[0]
         i++

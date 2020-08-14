@@ -6,6 +6,7 @@
   "repository": "https://github.com/nuxt/modules",
   "homepage": "https://github.com/nuxt/modules/tree/master/packages/browserconfig",
   "scripts": {
+    "api": "node SwarggerAutoApi.js",
     "swargger": "node SwarggerAutoApi.js",
     "yapi": "node YapiAutoApi.js"
   },
@@ -13,5 +14,5 @@
     "SwarggerToApi": "./index.js"
   },
   "author": "rechard",
-  "license": "MIT",
+  "license": "MIT"
 }
