@@ -1,18 +1,26 @@
 {
-  "name": "SwarggerToApi",
-  "version": "0.0.1",
-  "description": "take swargger.json Automatically convert to api.js",
+  "name": "nuxt-swaggerjsonapi",
+  "version": "0.1.0",
+  "description": "take swargger.json Automatic file conversion to api.js The company is Nuxt.js work",
+  "keywords": [
+    "nuxt",
+    "module",
+    "nuxt-module",
+    "vue",
+    "json",
+    "api",
+    "swagger",
+    "swaggerJson:api"
+  ],
   "main": "index.js",
-  "repository": "https://github.com/nuxt/modules",
-  "homepage": "https://github.com/nuxt/modules/tree/master/packages/browserconfig",
-  "scripts": {
-    "api": "node SwarggerAutoApi.js",
-    "swargger": "node SwarggerAutoApi.js",
-    "yapi": "node YapiAutoApi.js"
+  "repository": "https://www.npmjs.com/package/nuxt-swaggerjsonapi",
+  "homepage": "https://www.npmjs.com/package/nuxt-swaggerjsonapi",
+  "publishConfig": {
+    "access": "public"
   },
-  "bin": {
-    "SwarggerToApi": "./index.js"
-  },
-  "author": "rechard",
-  "license": "MIT"
+  "author": "HomWang",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^9.1.0"
+  }
 }
