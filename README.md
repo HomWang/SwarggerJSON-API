@@ -46,6 +46,7 @@ export default {
   swaggerJsonApi: {
     SourcePath: path.resolve(__dirname, "swagger.json"),
     OutputPath: path.resolve(__dirname, "./plugins/api/api.js"),
+    Model: "details",
   },
 };
 ```
@@ -55,13 +56,19 @@ export default {
 
 ## Development environment api.js And formal environment api.js The difference between
 
-### Development environment api.js
+### Model: "" (default)
+
+```js
+// getUserInfo
+```
+
+### Model: "details"
 
 ```js
 /* 
 ** Interface name: getUserInfo
 ** Parameter structure: 
-**    {"name":"AuthToken","in":"header","description":"Token 验证信息"}
+**    {"name":"AuthToken","in":"header","description":"Token info"}
 ** methods: The entire API call (Directly copy, paste, remove the notes can be used directly): 
     GetUserCloudAccount(){ 
       let params = { 
@@ -73,12 +80,6 @@ export default {
     GetUserCloudAccountParams: { 
     } 
 */
-```
-
-### Formal environment api.js
-
-```js
-// getUserInfo
 ```
 
 ## Author

@@ -6,7 +6,9 @@ module.exports = function nuxtSwaggerJsonApi (moduleOptions) {
   const { register, ...swaggerJsonApiOptions } = Object.assign({}, this.options.swaggerJsonApi, moduleOptions)
   nuxtOptions = Object.assign({}, this.options.swaggerJsonApi, moduleOptions)
   
-  SwaggerJsonApi(this.options.swaggerJsonApi)
+  if(process.env.NODE_ENV !== 'production'){
+    SwaggerJsonApi(this.options.swaggerJsonApi)
+  }
   
   // Register plugin
   this.addPlugin({

@@ -2,7 +2,7 @@ const path = require("path");
 const fs = require("fs-extra");
 
 module.exports = function(options){
-  const {SourcePath, OutputPath} = options
+  const {SourcePath, OutputPath, Model} = options
   //Read the swagger JSON file and accept the result as an object
   fs.readJson(path.resolve(__dirname, SourcePath), async (err, packageObj) => {
     if (err) console.error(err);
@@ -18,7 +18,7 @@ module.exports = function(options){
       })
     }
     const swarggerJSON = packageObj;
-    const clientMethods = generateClientAPIMethods(swarggerJSON);
+    const clientMethods = generateClientAPIMethods(swarggerJSON, Model);
     const clientMethodsIndex = generateClientIndexMethods();
     const apiClientPath = path.resolve(
       __dirname,
@@ -67,8 +67,8 @@ export default (ctx, inject) => {
   }
 
   //Converted JS file
-  function generateClientAPIMethods(methods) {
-    const body = generateClientAPIMethodsBody(methods, "");
+  function generateClientAPIMethods(methods, Model) {
+    const body = generateClientAPIMethodsBody(methods, "", Model);
     return (
       "// https://www.npmjs.com/package/nuxt-swaggerjsonapi\n" +
       `export default client => ({\n${body}})`
@@ -83,9 +83,10 @@ export default (ctx, inject) => {
   function generateClientAPIMethodsBody(
     methods,
     loadedMethods = "",
+    Model = ""
   ) {
     if (isObject(methods.paths)) {
-      if(process.env.NODE_ENV !== 'production'){
+      if(Model == 'details'){
         let oldVal = "";
         let i = 0;
         for (const prop of Object.keys(methods.paths)) {
