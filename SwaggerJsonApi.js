@@ -1,40 +1,60 @@
 const path = require("path");
 const fs = require("fs-extra");
+const consola = require('consola')
+const request = require('request')
 
 module.exports = function(options){
-  const {SourcePath, OutputPath, Model} = options
-  //Read the swagger JSON file and accept the result as an object
-  fs.readJson(path.resolve(__dirname, SourcePath), async (err, packageObj) => {
-    if (err) console.error(err);
-    let indexPath = '/index.js'
-    let mkdirsArr = []
-    if(OutputPath.includes('/') && OutputPath.split('/').length > 2){
-      indexPath = OutputPath.replace(OutputPath.split('/')[OutputPath.split('/').length - 1], 'index.js')
-      mkdirsArr = OutputPath.split('/')
-      mkdirsArr.splice(mkdirsArr.length - 1, mkdirsArr.length - 2)
-      mkdirsArr = mkdirsArr.join('/')
-      mkdirsSync(mkdirsArr,() => {
-        console.log(`Directory created successfully: ${mkdirsArr}`);
-      })
-    }
-    const swarggerJSON = packageObj;
-    const clientMethods = generateClientAPIMethods(swarggerJSON, Model);
-    const clientMethodsIndex = generateClientIndexMethods();
-    const apiClientPath = path.resolve(
-      __dirname,
-      path.join(
-        path.resolve(__dirname, OutputPath)
-      )
-    );
-    const indexClientPath = path.resolve(
-      __dirname,
-      path.join(
-        path.resolve(__dirname, indexPath)
-      )
-    );
-    await fs.writeFile(apiClientPath, clientMethods);
-    await fs.writeFile(indexClientPath, clientMethodsIndex);
-  });
+  const {SourcePath, OutputPath, Model, FileUrl} = options
+
+  if(FileUrl){
+    let fileName = FileUrl.split('/')[FileUrl.split('/').length - 1];
+    let stream = fs.createWriteStream(path.join(fileName));
+    request(FileUrl).pipe(stream).on("close", function (err) {
+      consola.success("File [" + fileName + "] download complete");
+      fsInit(FileUrl, `./${fileName}`)
+    });
+  }else{
+    fsInit()
+  }
+
+  function fsInit(FileUrl, fileName){
+    //Read the swagger JSON file and accept the result as an object
+    fs.readJson(FileUrl ? fileName : path.resolve(__dirname, SourcePath), async (err, packageObj) => {
+      if (err) consola.error(err);
+      let indexPath = '/index.js'
+      let mkdirsArr = []
+      if(OutputPath.includes('/') && OutputPath.split('/').length > 2){
+        indexPath = OutputPath.replace(OutputPath.split('/')[OutputPath.split('/').length - 1], 'index.js')
+        mkdirsArr = OutputPath.split('/')
+        mkdirsArr.splice(mkdirsArr.length - 1, mkdirsArr.length - 2)
+        mkdirsArr = mkdirsArr.join('/')
+        await mkdirsSync(mkdirsArr,() => {
+          consola.success(`Directory created successfully: ${mkdirsArr}`);
+        })
+      }
+      const swarggerJSON = packageObj;
+      const clientMethods = generateClientAPIMethods(swarggerJSON, Model);
+      const clientMethodsIndex = generateClientIndexMethods();
+      const apiClientPath = path.resolve(
+        __dirname,
+        path.join(
+          path.resolve(__dirname, OutputPath)
+        )
+      );
+      const indexClientPath = path.resolve(
+        __dirname,
+        path.join(
+          path.resolve(__dirname, indexPath)
+        )
+      );
+      await fs.writeFile(apiClientPath, clientMethods).catch(err => {
+        consola.error(err);
+      });
+      await fs.writeFile(indexClientPath, clientMethodsIndex).catch(err => {
+        consola.error(err);
+      });
+    });
+  }
 
   // Creating directory synchronization method recursively
   function mkdirsSync(dirname) {
