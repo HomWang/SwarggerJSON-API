@@ -8,6 +8,7 @@ features:
   - Automatically add API to application
   - Quickly copy API method and data to page, component, layout, vuex and Middleware
   - Friendly @nuxtjs/axios integration
+  - Provide address generation swagger.json And Provide local swagger.json File path
 ---
 
 ## Setup
@@ -44,6 +45,12 @@ export default {
   plugins: ["~plugins/api"],
 
   swaggerJsonApi: {
+    // Address generation and local generation
+    /*
+     ** SourcePath: path.resolve(__dirname, "swagger.json"),
+     ** OR
+     ** FileUrl: "http://localhost:8080/swagger.json",
+     */
     SourcePath: path.resolve(__dirname, "swagger.json"),
     OutputPath: path.resolve(__dirname, "./plugins/api/api.js"),
     Model: "details",

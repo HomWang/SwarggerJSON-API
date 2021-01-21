@@ -5,7 +5,6 @@ const request = require('request')
 
 module.exports = function(options){
   const {SourcePath, OutputPath, Model, FileUrl} = options
-
   if(FileUrl){
     let fileName = FileUrl.split('/')[FileUrl.split('/').length - 1];
     let stream = fs.createWriteStream(path.join(fileName));
@@ -17,9 +16,13 @@ module.exports = function(options){
     fsInit()
   }
 
-  function fsInit(FileUrl, fileName){
+  async function fsInit(FileUrl, fileName){
     //Read the swagger JSON file and accept the result as an object
     fs.readJson(FileUrl ? fileName : path.resolve(__dirname, SourcePath), async (err, packageObj) => {
+      if(!packageObj){
+        consola.error("Address resolution failed");
+        return
+      }
       if (err) consola.error(err);
       let indexPath = '/index.js'
       let mkdirsArr = []
@@ -105,7 +108,7 @@ export default (ctx, inject) => {
     loadedMethods = "",
     Model = ""
   ) {
-    if (isObject(methods.paths)) {
+    if (methods && isObject(methods.paths)) {
       if(Model == 'details'){
         let oldVal = "";
         let i = 0;
@@ -115,10 +118,10 @@ export default (ctx, inject) => {
           if (propLength) {
             let funName = propArray[propLength - 1];
             let methodName = Object.keys(methods.paths[prop])[0];
-            if (oldVal !== methods.paths[prop][methodName].tags[0] && i) {
+            if (methods.paths[prop][methodName].tags && oldVal !== methods.paths[prop][methodName].tags[0] && i) {
               loadedMethods += `  },\n`;
             }
-            if (oldVal !== methods.paths[prop][methodName].tags[0]) {
+            if (methods.paths[prop][methodName].tags && oldVal !== methods.paths[prop][methodName].tags[0]) {
               loadedMethods += `  ${methods.paths[prop][methodName].tags[0]}: {\n`;
             }
             if (methods.paths[prop][methodName].summary && funName && methodName) {
@@ -127,13 +130,13 @@ export default (ctx, inject) => {
                 methodName
               ].summary.replace(/\n/, "    // ")}\n`;
               loadedMethods += `    ** Parameter structure: \n`;
-              if (methods.paths[prop][methodName]["parameters"].length) {
+              if (methods.paths[prop][methodName]["parameters"] && methods.paths[prop][methodName]["parameters"].length) {
                 methods.paths[prop][methodName]["parameters"].map((item) => {
                   loadedMethods += `    **    ${JSON.stringify(item)}\n`;
                 });
               }
               loadedMethods += `    ** methods: The entire API call (Directly copy, paste, remove the notes can be used directly): \n`;
-              if (methods.paths[prop][methodName]["parameters"].length) {
+              if (methods.paths[prop][methodName]["parameters"] && methods.paths[prop][methodName]["parameters"].length) {
                 loadedMethods += `        ${
                   prop.split("/")[prop.split("/").length - 1]
                 }(){ \n`;
@@ -155,7 +158,7 @@ export default (ctx, inject) => {
                 loadedMethods += `        }, \n`;
               }
               loadedMethods += `    ** data(Vue use): \n`;
-              if (methods.paths[prop][methodName]["parameters"].length) {
+              if (methods.paths[prop][methodName]["parameters"] && methods.paths[prop][methodName]["parameters"].length) {
                 loadedMethods += `        ${
                   prop.split("/")[prop.split("/").length - 1]
                 }Params: { \n`;
@@ -177,7 +180,7 @@ export default (ctx, inject) => {
             loadedMethods += `        params\n`;
             loadedMethods += `      ${methodName == "get" ? "}" : ""})\n`;
             loadedMethods += `    },\n`;
-            oldVal = methods.paths[prop][methodName].tags[0];
+            oldVal = methods.paths[prop][methodName].tags ? methods.paths[prop][methodName].tags[0] : '';
             i++;
           }
         }
@@ -191,10 +194,10 @@ export default (ctx, inject) => {
           if (propLength) {
             let funName = propArray[propLength - 1]
             let methodName = Object.keys(methods.paths[prop])[0]
-            if (oldVal !== methods.paths[prop][methodName].tags[0] && i) {
+            if (methods.paths[prop][methodName].tags && oldVal !== methods.paths[prop][methodName].tags[0] && i) {
               loadedMethods += `  },\n`
             }
-            if (oldVal !== methods.paths[prop][methodName].tags[0]) {
+            if (methods.paths[prop][methodName].tags && oldVal !== methods.paths[prop][methodName].tags[0]) {
               loadedMethods += `  ${methods.paths[prop][methodName].tags[0]}: {\n`
             }
             if (methods.paths[prop][methodName].summary && funName && methodName) {
@@ -205,7 +208,7 @@ export default (ctx, inject) => {
             loadedMethods += `        params\n`
             loadedMethods += `      ${methodName == "get" ? '}' : ""})\n`
             loadedMethods += `    },\n`
-            oldVal = methods.paths[prop][methodName].tags[0]
+            oldVal = methods.paths[prop][methodName].tags ? methods.paths[prop][methodName].tags[0] : '';
             i++
           }
         }

@@ -1,6 +1,6 @@
 {
   "name": "nuxt-swaggerjsonapi",
-  "version": "0.1.7",
+  "version": "0.2.1",
   "description": "take swargger.json Automatic file conversion to api.js The company is Nuxt.js work",
   "keywords": [
     "nuxt",
