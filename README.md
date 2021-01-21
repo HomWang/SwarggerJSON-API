@@ -53,6 +53,34 @@ export default {
 - Sourcepath: Swagger.json route
 - OutputPath: Api.js route
 
+## Development environment api.js And formal environment api.js The difference between
+
+### Development environment api.js
+
+```js
+/* 
+** Interface name: getUserInfo
+** Parameter structure: 
+**    {"name":"AuthToken","in":"header","description":"Token 验证信息"}
+** methods: The entire API call (Directly copy, paste, remove the notes can be used directly): 
+    GetUserCloudAccount(){ 
+      let params = { 
+      } 
+      this.$api.Account.GetUserCloudAccount(params).then(res => { 
+      }) 
+    }, 
+** data(Vue use): 
+    GetUserCloudAccountParams: { 
+    } 
+*/
+```
+
+### Formal environment api.js
+
+```js
+// getUserInfo
+```
+
 ## Author
 
 - [Hom Wang](https://github.com/516310460)
