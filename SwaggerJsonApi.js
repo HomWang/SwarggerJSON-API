@@ -3,8 +3,19 @@ const fs = require("fs-extra");
 const consola = require('consola')
 const request = require('request')
 
-module.exports = function(options){
+module.exports = async function(options){
   const {SourcePath, OutputPath, Model, FileUrl} = options
+  let indexPath = '/index.js'
+  let mkdirsArr = []
+  if(OutputPath.includes('/') && OutputPath.split('/').length > 2){
+    indexPath = OutputPath.replace(OutputPath.split('/')[OutputPath.split('/').length - 1], 'index.js')
+    mkdirsArr = OutputPath.split('/')
+    mkdirsArr.splice(mkdirsArr.length - 1, mkdirsArr.length - 2)
+    mkdirsArr = mkdirsArr.join('/')
+    await mkdirsSync(mkdirsArr,() => {
+      consola.success(`Directory created successfully: ${mkdirsArr}`);
+    })
+  }
   if(FileUrl){
     let fileName = FileUrl.split('/')[FileUrl.split('/').length - 1];
     let stream = fs.createWriteStream(path.join(fileName));
@@ -24,20 +35,18 @@ module.exports = function(options){
         return
       }
       if (err) consola.error(err);
-      let indexPath = '/index.js'
-      let mkdirsArr = []
-      if(OutputPath.includes('/') && OutputPath.split('/').length > 2){
-        indexPath = OutputPath.replace(OutputPath.split('/')[OutputPath.split('/').length - 1], 'index.js')
-        mkdirsArr = OutputPath.split('/')
-        mkdirsArr.splice(mkdirsArr.length - 1, mkdirsArr.length - 2)
-        mkdirsArr = mkdirsArr.join('/')
-        await mkdirsSync(mkdirsArr,() => {
-          consola.success(`Directory created successfully: ${mkdirsArr}`);
-        })
-      }
+      // if(OutputPath.includes('/') && OutputPath.split('/').length > 2){
+      //   indexPath = OutputPath.replace(OutputPath.split('/')[OutputPath.split('/').length - 1], 'index.js')
+      //   mkdirsArr = OutputPath.split('/')
+      //   mkdirsArr.splice(mkdirsArr.length - 1, mkdirsArr.length - 2)
+      //   mkdirsArr = mkdirsArr.join('/')
+      //   await mkdirsSync(mkdirsArr,() => {
+      //     consola.success(`Directory created successfully: ${mkdirsArr}`);
+      //   })
+      // }
       const swarggerJSON = packageObj;
-      const clientMethods = generateClientAPIMethods(swarggerJSON, Model);
-      const clientMethodsIndex = generateClientIndexMethods();
+      const clientMethods = await generateClientAPIMethods(swarggerJSON, Model);
+      const clientMethodsIndex = await generateClientIndexMethods();
       const apiClientPath = path.resolve(
         __dirname,
         path.join(
